@@ -1,0 +1,30 @@
+name: Build_Flutter
+
+on:
+  pull_request:
+    branches: [ master ]
+
+  workflow_dispatch:
+
+
+jobs:
+  BuildiOS:
+    runs-on: macOS-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Java Setup
+      - uses: actions/setup-java@v1
+        with:
+          java-version: '12.x'
+        
+      - name: Flutter Setup
+      - uses: subosito/flutter-action@v1
+        with:
+          flutter-version: '2.2.3'
+      
+      - name: Build
+        working-directory: ./server
+      - run: flutter pub get
+      - run: flutter build apk
+      - run: flutter build ios --release --no-codesign
