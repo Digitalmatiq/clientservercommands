@@ -8,15 +8,14 @@ on:
 
 
 jobs:
-  BuildiOS:
+  build:
     runs-on: macOS-latest
     steps:
       - uses: actions/checkout@v2
       
-#       - name: Java Setup
-#       - uses: actions/setup-java@v1
-#         with:
-#           java-version: '12.x'
+      - uses: actions/setup-java@v1
+        with:
+          java-version: '12.x'
         
 #       - name: Flutter Setup
 #         working-directory: ./server
