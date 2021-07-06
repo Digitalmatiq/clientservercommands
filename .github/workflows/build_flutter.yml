@@ -17,11 +17,10 @@ jobs:
         with:
           java-version: '12.x'
         
-#       - name: Flutter Setup
-#         working-directory: ./server
-#       - uses: subosito/flutter-action@v1
-#         with:
-#           flutter-version: '2.2.3'
-#       - run: flutter pub get
-#       - run: flutter build apk
-#       - run: flutter build ios --release --no-codesign
+      - uses: subosito/flutter-action@v1
+        with:
+          flutter-version: '2.2.3'
+          working-directory: ./server
+      - run: flutter pub get
+      - run: flutter build apk
+      - run: flutter build ios --release --no-codesign
