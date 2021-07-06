@@ -13,8 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       
-      - name: Changing dir
-        working-directory: ./server
+      
         
       - uses: actions/setup-java@v1
         with:
@@ -23,7 +22,9 @@ jobs:
       - uses: subosito/flutter-action@v1
         with:
           flutter-version: '2.2.3'
-         
+          
+      - name: Changing dir
+        working-directory: ./server
       - run: flutter pub get
       - run: flutter build apk
       - run: flutter build ios --release --no-codesign
