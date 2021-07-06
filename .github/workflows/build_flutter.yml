@@ -8,7 +8,32 @@ on:
 
 
 jobs:
-  build:
+  build-client:
+    runs-on: macOS-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - uses: actions/setup-java@v1
+        with:
+          java-version: '12.x'
+        
+      - uses: subosito/flutter-action@v1
+        with:
+          flutter-version: '2.2.3'
+      
+      - name: Get dependencies
+        run: flutter pub get
+        working-directory: ./client
+        
+      - name: Build Apk
+        run: flutter build apk
+        working-directory: ./client
+        
+      - name: Build ios
+        run: flutter build ios --release --no-codesign
+        working-directory: ./client
+        
+  build-server:
     runs-on: macOS-latest
     steps:
       - uses: actions/checkout@v2
