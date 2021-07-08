@@ -33,6 +33,10 @@ jobs:
         run: flutter build ios --release --no-codesign
         working-directory: ./client
       
+      - name: Install Bundler
+        run: gem install bundler
+        working-directory: ./
+      
       - name: Bundle Install
         run: bunlde install
         working-directory: ./
@@ -69,6 +73,14 @@ jobs:
       - name: Build ios
         run: flutter build ios --release --no-codesign
         working-directory: ./server
+        
+      - name: Install Bundler
+        run: gem install bundler
+        working-directory: ./
+      
+      - name: Bundle Install
+        run: bunlde install
+        working-directory: ./
         
       - name: Create App on App Store Connect
         run: fastlane create_app
