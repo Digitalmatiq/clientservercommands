@@ -32,6 +32,18 @@ jobs:
       - name: Build ios
         run: flutter build ios --release --no-codesign
         working-directory: ./client
+      
+      - name: Bundle Install
+        run: bunlde install
+        working-directory: ./
+      
+      - name: Create App on App Store Connect
+        run: fastlane create_app
+        working-directory: ./client/ios
+        
+      - name: Upload to App Store Testflight
+        run: fastlane ios release
+        working-directory: ./client/ios
         
   build-server:
     runs-on: macOS-latest
@@ -57,3 +69,11 @@ jobs:
       - name: Build ios
         run: flutter build ios --release --no-codesign
         working-directory: ./server
+        
+      - name: Create App on App Store Connect
+        run: fastlane create_app
+        working-directory: ./server/ios
+        
+      - name: Upload to App Store Testflight
+        run: fastlane ios release
+        working-directory: ./server/ios
